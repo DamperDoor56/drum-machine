@@ -115,19 +115,38 @@ const bankTwo = [
   }
 ];
 
-const Keyboard = () =>{
-  return bankOne.map(sound =>{
-    return <button>
-      <audio src={sound.url} />
-      {sound.keyTrigger}
+const KeyboardKey = ({ play, sound: { keyTrigger, url, keyCode }}) =>{
+
+  const handleKeyDown = (event) => {
+    if(event.keyCode === keyCode){
+      play(keyTrigger)
+    }
+  }
+  React.useEffect(() =>{
+    document.addEventListener('keydown', handleKeyDown)
+  }, [])
+
+  return (
+  <button className='drum-pad' onClick={() => play(keyTrigger)}>
+      <audio className='clip' id={keyTrigger} src={url} />
+      {keyTrigger}
     </button>
-  })
+    )
+}
+
+const Keyboard = ({ play }) =>{
+  return bankOne.map((sound) => <KeyboardKey play={play} sound={sound} />)
 }
 
 function App() {
+  const play = (key) =>{
+    const audio = document.getElementById(key)
+    audio.currentTime = 0;
+    audio.play()
+  }
   return (
    <div id='drum-machine'>
-    <Keyboard />
+    <Keyboard play={play} />
    </div>
   );
 }
