@@ -1,6 +1,5 @@
 $background-body: #ccd5ae;
 $button-background : #faedcd;
-$wrapper-background : #d4a373;
 
 
 
@@ -12,37 +11,44 @@ body{
   justify-content: center;
   justify-items: center;
   align-items: center;
-  
-  .wrapper{
-    background-color:$wrapper-background ;
-    margin-top: 15%;
-    width: 20%;
-    padding: 1rem;
-    border-radius: 15px;
 
-    button {
-      margin-bottom: 5px;
-      border: none;
-      color: black; 
-      cursor: pointer;
-      font-size: 15px;
-      padding: 0.5rem;
-      border-radius: 5px;
-      background-color: $button-background;
-    }
-    .controle{
-      button{
-        background-color: #606c38;
-        color: #283618;
-      }
-      
-    }
-    .keyboard{
-      display: grid;
-      grid-gap: 10px;
-      grid-template-columns: repeat(3,1fr);
-    }
-    
+  button {
+    margin-bottom: 5px;
+    border: none;
+    color: black; 
+    cursor: pointer;
+    font-size: 20px;
+    padding: 0.5rem;
+    border-radius: 5px;
+    background-color: #faedcd;
+  }
+  .first-menu{
+    width: 50%;
+    display: inline-block;
+       .keyboard{
+         display: grid;
+         grid-template-columns: repeat(3,1fr);
+         grid-gap: 15px;
+         
+         button{
+          height: 80px;
+         }
+  }
+  }
+  
+
+  .wrapper{
+    background-color: rgba(90, 38, 38, 0.808);
+    margin-top: 15%;
+    width: 50%;
+    padding: 2rem;
+    border-radius: 15px;
+  }
+  .second-menu{
+    width: 50%;
+    display: inline-block;
+    justify-content: center;
   }
 }
+
 

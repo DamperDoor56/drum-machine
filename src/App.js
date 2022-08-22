@@ -177,10 +177,15 @@ function App() {
   return (
    <div id='drum-machine'>
     <div className='wrapper'>
-    <Keyboard play={play} sounds={sounds} />
+    <div className='first-menu'>
+    <Keyboard className='keyboard' play={play} sounds={sounds} />
+    </div>
+    <div className='second-menu'>
     <DrumControl changeBank={changeBank} />
     </div>
-   </div>
+    </div>
+    
+    </div>
   );
 }
 
