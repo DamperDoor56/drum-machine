@@ -1,5 +1,5 @@
 import './App.scss';
-import React from 'react';
+import React, {useState} from 'react';
 
 const bankOne = [
   {
@@ -134,11 +134,41 @@ const KeyboardKey = ({ play, sound: { keyTrigger, url, keyCode }}) =>{
     )
 }
 
-const Keyboard = ({ play }) =>{
-  return bankOne.map((sound) => <KeyboardKey play={play} sound={sound} />)
-}
+const soundsName = {
+  heaterKit: "Heater Kit",
+  smoothPianoKit: "Smooth Piano Kit"
+};
+
+const soundsGroup = {
+  heaterKit: bankOne,
+  smoothPianoKit: bankTwo
+};
+
+const Keyboard = ({ play, sounds }) =>(
+  <div className='keyboard'>
+    {sounds.map((sound) => <KeyboardKey play={play} sound={sound} />)}
+  </div> 
+)
+const DrumControl = ({ changeBank }) =>(
+  <div className='controle'>
+    <button onClick={changeBank}>Change Bank</button>
+  </div>
+)
 
 function App() {
+  const [soundsType, setSoundsType] = useState("heaterKit");
+  const [sounds, setSounds] = useState(soundsGroup[soundsType]);
+
+  const changeBank = () =>{
+    if(soundsType === "heaterKit"){
+      setSoundsType("smoothPianoKit")
+      setSounds(soundsGroup.smoothPianoKit)
+    } else {
+      setSoundsType("heaterKit")
+      setSounds(soundsGroup.heaterKit)
+    }
+  }
+
   const play = (key) =>{
     const audio = document.getElementById(key)
     audio.currentTime = 0;
@@ -146,7 +176,10 @@ function App() {
   }
   return (
    <div id='drum-machine'>
-    <Keyboard play={play} />
+    <div className='wrapper'>
+    <Keyboard play={play} sounds={sounds} />
+    <DrumControl changeBank={changeBank} />
+    </div>
    </div>
   );
 }
