@@ -169,6 +169,7 @@ function App() {
   const [soundName, setSoundName] = useState("")
   const [soundsType, setSoundsType] = useState("heaterKit");
   const [sounds, setSounds] = useState(soundsGroup[soundsType]);
+  const [show, setShow] = useState(true);
 
   const stop = () =>{
     setPower(!power)
@@ -203,7 +204,8 @@ function App() {
     audio.play()
   }
   return (<>
-   <div id='drum-machine'>
+  {
+    show?<div id='drum-machine'>
     {setKeyVolume()}
     <div className='wrapper'>
     <div className='first-menu'>
@@ -220,10 +222,27 @@ function App() {
     changeBank={changeBank} name={ soundName || soundsName[soundsType]} />
     </div>
     </div>
-    </div>
+    </div>:null
+  }
+   
 
     <nav className='nav-bar'>
-      <div>Start</div>
+
+      <div className='wraping'> 
+      <div className='element'>
+        <img alt=''
+        src='https://res.cloudinary.com/dweiaqd6l/image/upload/v1661285787/imagen_2022-08-23_170804067_cktmq4-removebg-preview_irjopv.png'></img>
+        <p>Start</p>
+        </div>
+        |
+        <div className='element' onClick={() => setShow(!show)}>
+        <img alt=''
+        src='https://res.cloudinary.com/dweiaqd6l/image/upload/v1661290164/imagen_2022-08-23_182922162_wxcutm.png'></img>
+        <p>Drum Machine</p>
+        </div>
+      </div>
+      
+
     </nav>
     </>
   );
