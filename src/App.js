@@ -206,6 +206,7 @@ function App() {
   return (<>
   {
     show?<div id='drum-machine'>
+      <div className='navbar-drum'></div>
     {setKeyVolume()}
     <div className='wrapper'>
     <div className='first-menu'>

@@ -40,6 +40,9 @@ body{
       &:hover{
         filter: brightness(0.8);
       }
+      &:active{
+        filter: brightness(1.2);
+      }
       p{
         margin-top: 2px;
         font-size: 15px;
@@ -58,6 +61,7 @@ body{
   justify-content: center;
   justify-items: center;
   align-items: center;
+ 
 
   button {
     border: none;
