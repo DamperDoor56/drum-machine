@@ -39,15 +39,23 @@ body{
 
   .wrapper{
     background-color: rgba(90, 38, 38, 0.808);
-    margin-top: 15%;
-    width: 50%;
+    margin-top: 10%;
+    width: 80%;
     padding: 2rem;
     border-radius: 15px;
   }
   .second-menu{
     width: 50%;
-    display: inline-block;
+    display: inline-flex;
     justify-content: center;
+
+    #display {
+      width: 200px;
+      background-color: gray;
+      margin: 15px auto;
+      padding: 15px;
+      box-sizing: border-box;
+    }
   }
 }
 

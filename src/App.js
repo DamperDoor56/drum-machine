@@ -149,8 +149,9 @@ const Keyboard = ({ play, sounds }) =>(
     {sounds.map((sound) => <KeyboardKey play={play} sound={sound} />)}
   </div> 
 )
-const DrumControl = ({ changeBank }) =>(
+const DrumControl = ({ name, changeBank }) =>(
   <div className='controle'>
+    <h2 id='display'>{name}</h2>
     <button onClick={changeBank}>Change Bank</button>
   </div>
 )
@@ -181,7 +182,7 @@ function App() {
     <Keyboard className='keyboard' play={play} sounds={sounds} />
     </div>
     <div className='second-menu'>
-    <DrumControl changeBank={changeBank} />
+    <DrumControl changeBank={changeBank} name={name} />
     </div>
     </div>
     
