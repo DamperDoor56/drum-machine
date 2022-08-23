@@ -115,11 +115,11 @@ const bankTwo = [
   }
 ];
 
-const KeyboardKey = ({ play, sound: { keyTrigger, url, keyCode }}) =>{
+const KeyboardKey = ({ play, sound: { id, keyTrigger, url, keyCode }}) =>{
 
   const handleKeyDown = (event) => {
     if(event.keyCode === keyCode){
-      play(keyTrigger)
+      play(keyTrigger, id)
     }
   }
   React.useEffect(() =>{
@@ -127,7 +127,7 @@ const KeyboardKey = ({ play, sound: { keyTrigger, url, keyCode }}) =>{
   }, [])
 
   return (
-  <button className='drum-pad' onClick={() => play(keyTrigger)}>
+  <button className='drum-pad' onClick={() => play(keyTrigger, id)}>
       <audio className='clip' id={keyTrigger} src={url} />
       {keyTrigger}
     </button>
@@ -144,23 +144,48 @@ const soundsGroup = {
   smoothPianoKit: bankTwo
 };
 
-const Keyboard = ({ play, sounds }) =>(
+const Keyboard = ({ play, sounds, power }) =>(
   <div className='keyboard'>
-    {sounds.map((sound) => <KeyboardKey play={play} sound={sound} />)}
+    {power ?
+    sounds.map((sound) => <KeyboardKey play={play} sound={sound} />)
+    : sounds.map((sound) => <KeyboardKey play={play} sound={{...sound, url:'#'}} />)
+  }
   </div> 
 )
-const DrumControl = ({ name, changeBank }) =>(
+const DrumControl = ({ name, stop, power, changeBank, volume, handleVolumeChange }) =>(
   <div className='controle'>
+    <button onClick={stop}>Power: {power ? 'ON' : 'OFF'}</button>
+    <h2>Volume: {Math.round(volume * 100)}%</h2>
+    <input max='1' min='0' step='0.01' type='range' value={volume}
+    onChange={handleVolumeChange} />
     <h2 id='display'>{name}</h2>
     <button onClick={changeBank}>Change Bank</button>
   </div>
 )
 
 function App() {
+  const [power, setPower] = useState(true);
+  const [volume, setVolume] = useState(1);
+  const [soundName, setSoundName] = useState("")
   const [soundsType, setSoundsType] = useState("heaterKit");
   const [sounds, setSounds] = useState(soundsGroup[soundsType]);
 
+  const stop = () =>{
+    setPower(!power)
+  }
+  const handleVolumeChange = (event) => {
+    setVolume(event.target.value)
+  }
+  const setKeyVolume = () => {
+    const audios = sounds.map(sound => document.getElementById(sound.keyTrigger))
+    audios.forEach(audio => {
+      if (audio){
+        audio.volume = volume;
+      }
+    })
+  }
   const changeBank = () =>{
+    setSoundName("")
     if(soundsType === "heaterKit"){
       setSoundsType("smoothPianoKit")
       setSounds(soundsGroup.smoothPianoKit)
@@ -170,23 +195,37 @@ function App() {
     }
   }
 
-  const play = (key) =>{
-    const audio = document.getElementById(key)
+
+  const play = (key, sound) =>{
+    setSoundName(sound);
+    const audio = document.getElementById(key);
     audio.currentTime = 0;
     audio.play()
   }
-  return (
+  return (<>
    <div id='drum-machine'>
+    {setKeyVolume()}
     <div className='wrapper'>
     <div className='first-menu'>
-    <Keyboard className='keyboard' play={play} sounds={sounds} />
+    <Keyboard className='keyboard'
+    power={power}
+    play={play} 
+    sounds={sounds} />
     </div>
     <div className='second-menu'>
-    <DrumControl changeBank={changeBank} name={name} />
+    <DrumControl 
+    stop={stop}
+    power={power}
+    handleVolumeChange={handleVolumeChange} volume={volume}
+    changeBank={changeBank} name={ soundName || soundsName[soundsType]} />
     </div>
     </div>
-    
     </div>
+
+    <nav className='nav-bar'>
+      <div>Start</div>
+    </nav>
+    </>
   );
 }
 
