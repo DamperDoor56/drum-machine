@@ -32,7 +32,7 @@ body{
       display: flex;
       justify-content: start;
       height: 24px;
-      width: 150px;
+      width: 160px;
       text-align: center;
       border: 1px solid rgb(78, 78, 78);
       background-color: $background-windows;
@@ -93,7 +93,7 @@ body{
     background-color: $background-windows;
     box-shadow: $box-shadow;
     margin-top: 10%;
-    width: 50%;
+    width: 45%;
     padding: 2rem;
   }
   .second-menu{
@@ -102,7 +102,7 @@ body{
     justify-content: end;
 
     #display {
-      width: 300px;
+      width: fit-content;
       color: black;
       background-color: transparent;
       box-sizing: border-box;
@@ -110,4 +110,42 @@ body{
   }
 }
 
+@media screen and (max-width:1040px){
+  .nav-bar .wraping{
+    width: 34%;
+  }
+}
 
+@media screen and (max-width:768px) {
+  #drum-machine .wrapper{
+    width: 100%;
+  }
+  .nav-bar .wraping{
+    width: 45%;
+  }
+}
+@media screen and (max-width:600px) {
+  .nav-bar .wraping{
+    width: 60%;
+  }
+}
+@media screen and (max-width:420px) {
+  #drum-machine .first-menu{
+    width: 100%;
+  }
+  .nav-bar .wraping{
+    width: 82%;
+  }
+  #drum-machine .second-menu{
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width:300px) {
+  .nav-bar .wraping{
+    width: 100%;
+  }
+}

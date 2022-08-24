@@ -206,15 +206,17 @@ function App() {
   return (<>
   {
     show?<div id='drum-machine'>
-      <div className='navbar-drum'></div>
     {setKeyVolume()}
     <div className='wrapper'>
+    <div className='navbar-drum'></div>
+
     <div className='first-menu'>
     <Keyboard className='keyboard'
     power={power}
     play={play} 
     sounds={sounds} />
     </div>
+
     <div className='second-menu'>
     <DrumControl 
     stop={stop}
