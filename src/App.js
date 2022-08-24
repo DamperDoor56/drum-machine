@@ -206,11 +206,11 @@ function App() {
   }
   return (<>
   <div className='links'>
-    <div className='linked'> <a href='https://www.linkedin.com/in/ludmila-rocio-lopez-082b75218/' target='_blank'><img src='https://res.cloudinary.com/dweiaqd6l/image/upload/v1661301308/imagen_2022-08-23_213507751_nz7ade.png' alt=''></img>
+    <div className='linked'> <a href='https://www.linkedin.com/in/ludmila-rocio-lopez-082b75218/' target='_blank' rel="noopener noreferrer"><img src='https://res.cloudinary.com/dweiaqd6l/image/upload/v1661301308/imagen_2022-08-23_213507751_nz7ade.png' alt=''></img>
     <label>Linkedin</label></a> </div>
-    <div className='linked'><a href='https://github.com/DamperDoor56' target='_blank'><img src='https://res.cloudinary.com/dweiaqd6l/image/upload/v1661300500/imagen_2022-08-23_211947424-removebg-preview_qexwa1.png' alt=''></img>
+    <div className='linked'><a href='https://github.com/DamperDoor56' target='_blank' rel="noopener noreferrer"><img src='https://res.cloudinary.com/dweiaqd6l/image/upload/v1661300500/imagen_2022-08-23_211947424-removebg-preview_qexwa1.png' alt=''></img>
     <label>Github</label></a></div>
-    <div className='linked'><a href='https://main--personal-portfolio-ludmi-lopez.netlify.app/' target='_blank'><img src='https://res.cloudinary.com/dweiaqd6l/image/upload/v1661301426/imagen_2022-08-23_213626025-removebg-preview_cuzgzu.png' alt=''></img>
+    <div className='linked'><a href='https://main--personal-portfolio-ludmi-lopez.netlify.app/' target='_blank' rel="noopener noreferrer"><img src='https://res.cloudinary.com/dweiaqd6l/image/upload/v1661301426/imagen_2022-08-23_213626025-removebg-preview_cuzgzu.png' alt=''></img>
     <label>Portfolio</label></a></div>
   </div>
   {
